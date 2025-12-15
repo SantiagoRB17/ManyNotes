@@ -5,6 +5,10 @@ It focuses on clean architecture, RESTful APIs, and progressive enhancement with
 
 ---
 
+## Getting Started
+
+**Note:** To work on the frontend or backend, you must navigate to the respective folder (`/backend` or `/frontend`) for the development scripts to work properly.
+
 ## Features
 
 - Create and manage notes written in Markdown
@@ -25,6 +29,18 @@ It focuses on clean architecture, RESTful APIs, and progressive enhancement with
 - Markdown parsing
 - Grammar checking service
 - OpenAI API (AI features)
+
+#### Backend dependencies
+
+Dependencies can be found in the `backend/package.json` folder.
+To install all dependencies`bun i`.
+
+- **Express**: Web framework for building the REST API
+- **Morgan**: HTTP request logger middleware
+- **Zod**: TypeScript-first schema validation for request/response models
+- **Markdown-it** (or similar): Markdown parser
+- **Grammar checking library**: (e.g., LanguageTool API or similar)
+- **OpenAI SDK**: For AI-powered features
 
 ### Frontend
 

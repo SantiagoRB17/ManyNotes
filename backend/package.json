@@ -1,0 +1,14 @@
+{
+  "name": "backend",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "devDependencies": {},
+  "scripts": {
+    "dev": "node src/index.js"
+  },
+  "dependencies": {},
+  "peerDependencies": {
+    "typescript": "^5"
+  }
+}
