@@ -5,7 +5,6 @@ import { getRequiredVar } from "../utils/env.js";
 export const connectMongoDB = () => {
   const MONGO_URI = getRequiredVar("MONGO_URI");
 
-
   try {
     console.log("Intentando conexion a base de datos mongo.")
     mongoose.connect(MONGO_URI);
