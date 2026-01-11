@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 import { getRequiredVar } from "../utils/env.js";
 
 
-export const connectDB = () => {
+export const connectMongoDB = () => {
   const MONGO_URI = getRequiredVar("MONGO_URI");
 
 
