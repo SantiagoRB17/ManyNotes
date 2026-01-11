@@ -1,5 +1,5 @@
 import { randomUUID } from 'node:crypto'
-import Note from '../models/note.js'
+import Note from '../models/Note.js'
 
 export class NoteService {
   static async createNote ({ title, content }) {

@@ -1,17 +1,18 @@
 {
   "name": "backend",
-  "module": "index.ts",
+  "module": "app.ts",
   "type": "module",
   "private": true,
   "devDependencies": {
     "standard": "17.1.2"
   },
   "scripts": {
-    "dev": "node src/index.js"
+    "dev": "node src/app.js"
   },
   "dependencies": {
+    "dotenv": "^17.2.3",
     "express": "5.2.1",
-    "mongoose": "9.1.2",
+    "mongoose": "^9.1.2",
     "zod": "4.3.5"
   },
   "peerDependencies": {
