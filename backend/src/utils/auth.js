@@ -1,6 +1,5 @@
 import bcrypt from 'bcrypt'
 
-
 const SALT_ROUNDS = 10
 
 export async function hashPassword (password) {
@@ -13,7 +12,6 @@ export async function hashPassword (password) {
   }
 }
 
-
 export async function verifyPassword (password, hashedPassword) {
   try {
     const isMatch = await bcrypt.compare(password, hashedPassword)
@@ -22,5 +20,3 @@ export async function verifyPassword (password, hashedPassword) {
     throw new Error('Error al verificar la contraseña: ' + error.message)
   }
 }
-
-

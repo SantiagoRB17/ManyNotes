@@ -1,25 +1,21 @@
 import express from 'express'
-import { router } from './routes/Routes.js';
+import { router } from './routes/Routes.js'
 import { connectMongoDB } from './repositories/BD.js'
-import dotenv from "dotenv"
-import morgan from 'morgan';
+import dotenv from 'dotenv'
+import morgan from 'morgan'
 
+dotenv.config()
 
-  dotenv.config();
+const app = express()
 
-  const app = express()
+app.use(express.json())
+app.use(morgan('short'))
+app.use(router)
 
-  app.use(express.json())
-  app.use(morgan('short'))
-  app.use(router)
-  
+connectMongoDB()
 
-  connectMongoDB()
+const PORT = process.env.PORT ?? 3000
 
-  const PORT = process.env.PORT ?? 3000
-
-  app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`)
-  })
-
-
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`)
+})

@@ -1,4 +1,4 @@
-import mongoose, { Schema }from 'mongoose'; 
+import mongoose, { Schema } from 'mongoose'
 
 // Mongo DB crea el id por si solo entonces no hay necesidad de pasarle ID (para crear).
 
@@ -9,39 +9,38 @@ const NoteSchema = new Schema(
     createdBy: { type: Schema.Types.ObjectId, ref: 'User', required: true }
   },
   { timestamps: true }
-);
+)
 
-const NoteModel = mongoose.model('Note', NoteSchema);
+const NoteModel = mongoose.model('Note', NoteSchema)
 
 export default class NoteRepository {
-
-  constructor() {
+  constructor () {
   }
 
-  //CREATE
+  // CREATE
 
-  async createNote({ title, content, createdBy }) {
-    const note = new NoteModel({ title, content, createdBy });
+  async createNote ({ title, content, createdBy }) {
+    const note = new NoteModel({ title, content, createdBy })
     return await note.save()
   }
 
-  //READ
+  // READ
 
-  async findById({ id }) {
-    return await NoteModel.findById(id).populate('createdBy', 'name email');
+  async findById ({ id }) {
+    return await NoteModel.findById(id).populate('createdBy', 'name email')
   }
 
-  async findAll() {
-    return await NoteModel.find().populate('createdBy', 'name email');
+  async findAll () {
+    return await NoteModel.find().populate('createdBy', 'name email')
   }
 
-  async findByUser({ createdBy }) {
-    return await NoteModel.find({ createdBy }).populate('createdBy', 'name email');
+  async findByUser ({ createdBy }) {
+    return await NoteModel.find({ createdBy }).populate('createdBy', 'name email')
   }
 
-  //UPDATE
+  // UPDATE
 
-  async updateNote({ title, content, id }) {
+  async updateNote ({ title, content, id }) {
     const updateData = {}
     if (title !== undefined) updateData.title = title
     if (content !== undefined) updateData.content = content
@@ -49,9 +48,9 @@ export default class NoteRepository {
     return await NoteModel.findByIdAndUpdate(id, updateData, { new: true })
   }
 
-  //DELETE
+  // DELETE
 
-  async deleteNote( {id} ) {
+  async deleteNote ({ id }) {
     return await NoteModel.findByIdAndDelete(id)
   }
 }

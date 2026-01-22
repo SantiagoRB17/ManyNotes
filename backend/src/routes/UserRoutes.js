@@ -11,7 +11,7 @@ router.get('/', UserController.getAllUsers)
 
 router.get('/:id', UserController.getUserById)
 
-router.post('/', UserController.createUser)
+router.post('/register', UserController.createUser)
 
 router.patch('/:id', UserController.updateUser)
 
