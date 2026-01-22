@@ -1,7 +1,5 @@
 import UserRepository from '../repositories/MongoDB/UserRepository.js'
 import { hashPassword, verifyPassword } from '../utils/auth.js'
-import jwt from 'jsonwebtoken'
-import { getRequiredVar } from '../utils/env.js'
 
 const userRepository = new UserRepository()
 
@@ -73,7 +71,6 @@ export class UserService {
 
     // Retornar usuario sin contraseña
     const { password: _, ...userWithoutPassword } = user.toObject()
-    const token = jwt.sign({ id: user._id, email: user.email }, getRequiredVar('SECRET_JWT_KEY'), { expiresIn: '1h' })
-    return { userWithoutPassword, token }
+    return userWithoutPassword
   }
 }
