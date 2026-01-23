@@ -104,7 +104,7 @@ export class UserController {
           sameSite: 'strict',
           maxAge: 3600000 // 1 hora
         })
-        .json({ message: 'Login exitoso', user, token })
+        .json({ message: 'Login exitoso', user })
     } catch (error) {
       res.status(401).json({ error: error.message })
     }
