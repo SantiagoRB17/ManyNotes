@@ -1,18 +1,19 @@
 import { Router } from 'express'
 import { UserController } from '../controllers/UserController.js'
+import { authMiddleware } from '../utils/auth.js'
 
 export const router = Router()
 
-// Login de usuario
+// Rutas publicas
 router.post('/login', UserController.login)
 
-// Obtener todos los usuarios
-router.get('/', UserController.getAllUsers)
+router.post('/register', UserController.createUser)
 
-router.get('/:id', UserController.getUserById)
+// Rutas protegidas
+router.get('/', authMiddleware, UserController.getAllUsers)
 
-router.post('/', UserController.createUser)
+router.get('/:id', authMiddleware, UserController.getUserById)
 
-router.patch('/:id', UserController.updateUser)
+router.patch('/:id', authMiddleware, UserController.updateUser)
 
-router.delete('/:id', UserController.deleteUser)
+router.delete('/:id', authMiddleware, UserController.deleteUser)

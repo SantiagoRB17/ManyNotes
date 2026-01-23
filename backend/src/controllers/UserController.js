@@ -1,5 +1,7 @@
 import { UserService } from '../services/UserService.js'
 import { validateUser, validatePartialUser } from '../schemas/User.js'
+import jwt from 'jsonwebtoken'
+import { getRequiredVar } from '../utils/env.js'
 
 export class UserController {
   static async createUser (req, res) {
@@ -94,7 +96,15 @@ export class UserController {
 
     try {
       const user = await UserService.authenticateUser({ email, password })
-      res.status(200).json({ message: 'Login exitoso', user })
+      const token = jwt.sign({ id: user._id, email: user.email }, getRequiredVar('SECRET_JWT_KEY'), { expiresIn: '1h' })
+      res.status(200)
+        .cookie('access_token', token, {
+          httpOnly: true,
+          secure: process.env.NODE_ENV === 'production',
+          sameSite: 'strict',
+          maxAge: 3600000 // 1 hora
+        })
+        .json({ message: 'Login exitoso', user })
     } catch (error) {
       res.status(401).json({ error: error.message })
     }

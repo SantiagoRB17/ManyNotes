@@ -4,8 +4,7 @@ import { hashPassword, verifyPassword } from '../utils/auth.js'
 const userRepository = new UserRepository()
 
 export class UserService {
-  static async createUser ({ name, email, password } ) {
-    
+  static async createUser ({ name, email, password }) {
     // Verificar si el email ya existe
     const existingUser = await userRepository.findByEmail({ email })
     if (existingUser) {
@@ -16,7 +15,7 @@ export class UserService {
     const hashedPassword = await hashPassword(password)
 
     const user = await userRepository.createUser({ name, email, password: hashedPassword })
-    
+
     return user
   }
 
@@ -32,7 +31,7 @@ export class UserService {
 
   static async updateUser (id, updateData) {
     console.log('📝 updateUser recibió:', { id, updateData })
-    
+
     // Si se está actualizando el email, verificar que no esté en uso
     if (updateData.email) {
       const existingUser = await userRepository.findByEmail({ email: updateData.email })
@@ -57,7 +56,7 @@ export class UserService {
 
   static async authenticateUser ({ email, password }) {
     console.log('🔑 authenticateUser - email:', email)
-    
+
     // Buscar usuario por email
     const user = await userRepository.findByEmail({ email })
     if (!user) {

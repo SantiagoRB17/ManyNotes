@@ -3,7 +3,6 @@ import { NoteController } from '../controllers/NoteController.js'
 
 export const router = Router()
 
-
 router.get('/', NoteController.getAllNotes)
 
 router.get('/user/:userId', NoteController.getNotesByUser)

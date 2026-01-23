@@ -10,7 +10,7 @@ export class NoteController {
     }
 
     try {
-      const newNote = await NoteService.createNote(validation.data)
+      const newNote = await NoteService.createNote({ ...validation.data, createdBy: req.user.id })
       res.status(201).json(newNote)
     } catch (error) {
       res.status(400).json({ error: error.message })
